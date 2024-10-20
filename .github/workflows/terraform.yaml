@@ -52,15 +52,17 @@ jobs:
 
       - name: Terraform Provider
         run: |
-          echo "terraform {
-            backend \"s3\" {
-              bucket  = \"${TERRAFORM_BACKEND_AWS_S3_BUCKET}\"
-              encrypt = true
-              key     = \"${TERRAFORM_BACKEND_AWS_S3_KEY}\"
-              dynamodb_table     = \"${TERRAFORM_BACKEND_AWS_DYNAMODB_TABLE}\"
-              region  = \"us-east-1\"
+          cat <<EOF > terraform.tf
+          terraform {
+            backend "s3" {
+              bucket         = "${TERRAFORM_BACKEND_AWS_S3_BUCKET}"
+              encrypt        = true
+              key            = "${TERRAFORM_BACKEND_AWS_S3_KEY}"
+              dynamodb_table = "${TERRAFORM_BACKEND_AWS_DYNAMODB_TABLE}"
+              region         = "us-east-1"
             }
-          }" >> terraform.tf
+          }
+          EOF
           cat -n terraform.tf
         working-directory: infrastructure
 
@@ -127,15 +129,17 @@ jobs:
 
       - name: Terraform Provider
         run: |
-          echo "terraform {
-            backend \"s3\" {
-              bucket  = \"${TERRAFORM_BACKEND_AWS_S3_BUCKET}\"
-              encrypt = true
-              key     = \"${TERRAFORM_BACKEND_AWS_S3_KEY}\"
-              dynamodb_table     = \"${TERRAFORM_BACKEND_AWS_DYNAMODB_TABLE}\"
-              region  = \"us-east-1\"
+          cat <<EOF > terraform.tf
+          terraform {
+            backend "s3" {
+              bucket         = "${TERRAFORM_BACKEND_AWS_S3_BUCKET}"
+              encrypt        = true
+              key            = "${TERRAFORM_BACKEND_AWS_S3_KEY}"
+              dynamodb_table = "${TERRAFORM_BACKEND_AWS_DYNAMODB_TABLE}"
+              region         = "us-east-1"
             }
-          }" >> terraform.tf
+          }
+          EOF
           cat -n terraform.tf
         working-directory: infrastructure
 
