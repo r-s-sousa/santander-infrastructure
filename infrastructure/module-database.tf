@@ -1,7 +1,8 @@
-module "cache" {
-  source             = "./redis"
-  redis_cluster_name = var.redis_cluster_name
+module "db" {
+  source             = "./database"
   application_name   = var.application_name
+  db_identifier      = var.db_identifier
+  db_name            = var.db_name
   tags               = merge(var.tags, local.tags)
   environment        = var.environment
   vpc_id             = module.network.vpc_id
