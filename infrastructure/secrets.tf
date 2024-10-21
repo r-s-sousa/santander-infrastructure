@@ -1,6 +1,5 @@
 resource "aws_secretsmanager_secret" "ssm" {
-  name                    = "${var.application_name}-secrets"
-  recovery_window_in_days = 7
+  name = "${var.application_name}-secrets"
 
   lifecycle {
     create_before_destroy = true

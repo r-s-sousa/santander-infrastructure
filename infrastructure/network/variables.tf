@@ -12,6 +12,6 @@ variable "vpc_id" {
 
 variable "application_name" {
   description = "The name of the application using this infrastructure"
+  nullable    = false
   type        = string
-  default     = "address-service"
 }

@@ -30,11 +30,22 @@ resource "aws_security_group" "ec2" {
   description = "Security group for EC2 instances"
   vpc_id      = var.vpc_id
 
+  tags = merge(var.tags, {
+    Category = "application"
+  })
+
   ingress {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
     security_groups = [aws_security_group.alb.id]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

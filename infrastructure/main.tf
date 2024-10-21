@@ -16,15 +16,23 @@ provider "aws" {
 
 module "network" {
   source             = "./network"
-  application_name   = var.application_name
+  application_name   = "${var.application_name}-${var.environment}"
   vpc_id             = var.vpc_id
   availability_zones = var.availability_zones
+}
+
+module "application" {
+  source            = "./application"
+  tags              = merge(var.tags, local.tags)
+  vpc_id            = module.network.vpc_id
+  application_name  = "${var.application_name}-${var.environment}"
+  public_subnet_ids = module.network.public_subnet_ids
 }
 
 module "cache" {
   source             = "./cache"
   redis_cluster_name = var.redis_cluster_name
-  application_name   = var.application_name
+  application_name   = "${var.application_name}-${var.environment}"
   tags               = merge(var.tags, local.tags)
   environment        = var.environment
   vpc_id             = module.network.vpc_id
@@ -35,7 +43,6 @@ module "cache" {
 
 module "db" {
   source             = "./database"
-  application_name   = var.application_name
   db_identifier      = var.db_identifier
   db_name            = var.db_name
   tags               = merge(var.tags, local.tags)
@@ -45,11 +52,3 @@ module "db" {
   security_group_ids = module.network.instance_security_group_ids
   availability_zones = module.network.availability_zones
 }
-
-# module "application" {
-#   source            = "./application"
-#   tags              = merge(var.tags, local.tags)
-#   vpc_id            = module.network.vpc_id
-#   application_name  = "${var.application_name}-${var.environment}"
-#   public_subnet_ids = module.network.public_subnet_ids
-# }

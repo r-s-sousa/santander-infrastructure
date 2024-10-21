@@ -11,14 +11,8 @@ resource "aws_db_instance" "db" {
   multi_az                              = false
   publicly_accessible                   = false
   skip_final_snapshot                   = true
-  backup_retention_period               = 7 
-  backup_window                         = "03:00-04:00"
   max_allocated_storage                 = 15
   performance_insights_enabled          = false
-  performance_insights_retention_period = 7
-  monitoring_interval                   = 0
-  monitoring_role_arn                   = null
   deletion_protection                   = false
-  storage_encrypted                     = false
   tags                                  = var.tags
 }

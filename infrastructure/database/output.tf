@@ -19,9 +19,3 @@ output "rds_db_password" {
   value     = random_password.rds_password.result
   sensitive = true
 }
-
-variable "application_name" {
-  description = "Application Name"
-  nullable    = false
-  type        = string
-}
