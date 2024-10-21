@@ -18,4 +18,4 @@ jobs:
     with:
       aws-account-id: 746669201677
       environment: development
-      deployment: false
+      deployment: true
