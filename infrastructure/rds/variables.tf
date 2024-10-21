@@ -1,9 +1,3 @@
-variable "availability_zones" {
-  description = "A list of availability zones"
-  nullable    = false
-  type        = list(string)
-}
-
 variable "publicly_accessible" {
   description = "RDS Publicly accessible"
   default     = false
@@ -75,14 +69,32 @@ variable "db_name" {
   type        = string
 }
 
-variable "vpc_id" {
-  description = "Main VPC id"
-  nullable    = false
-  type        = string
-}
-
 variable "tags" {
   description = "Resource tags"
   nullable    = false
   type        = map(string)
+}
+
+variable "vpc_id" {
+  description = "The VPC ID where the database instance will be deployed"
+  type        = string
+  nullable    = false
+}
+
+variable "private_subnet_ids" {
+  description = "The private subnet IDs for the database instance"
+  type        = list(string)
+  nullable    = false
+}
+
+variable "security_group_ids" {
+  description = "The security group IDs for the database instance"
+  type        = list(string)
+  nullable    = false
+}
+
+variable "availability_zones" {
+  description = "The availability zones for the database instance"
+  type        = list(string)
+  nullable    = false
 }

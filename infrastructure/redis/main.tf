@@ -1,7 +1,7 @@
 
 resource "aws_memorydb_subnet_group" "main" {
   name       = "${var.redis_cluster_name}-subnet-group"
-  subnet_ids = values(data.aws_subnet.private)[*].id
+  subnet_ids = var.private_subnet_ids
   tags       = var.tags
 }
 
