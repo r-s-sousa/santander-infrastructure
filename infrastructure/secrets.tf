@@ -1,10 +1,9 @@
 resource "aws_secretsmanager_secret" "ssm" {
-  name                    = "${var.application_name}-ssm"
-  recovery_window_in_days = 7
+  name = "${var.application_name}-secrets"
 
   lifecycle {
     create_before_destroy = true
-    prevent_destroy       = true
+    prevent_destroy       = false
   }
 
   tags = merge(local.tags, var.tags)

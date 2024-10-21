@@ -3,12 +3,12 @@ data "aws_caller_identity" "current" {}
 locals {
   account_id = data.aws_caller_identity.current.account_id
   tags = {
-    ApplicationName = var.application_name
+    ApplicationName = "${var.application_name}-${var.environment}"
     Env             = var.environment == "production" ? "prod" : "dev"
     Environment     = var.environment
     OwnerEmail      = "rafael_sousa2018@outlook.com"
     OwnerName       = "rafael sousa"
-    Service         = var.application_name
+    Service         = "${var.application_name}-${var.environment}"
     Terraform       = "true"
   }
   secrets = {
