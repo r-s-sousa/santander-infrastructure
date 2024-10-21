@@ -1,8 +1,7 @@
-module "db" {
-  source             = "./rds"
+module "cache" {
+  source             = "./cache"
+  redis_cluster_name = var.redis_cluster_name
   application_name   = var.application_name
-  db_identifier      = var.db_identifier
-  db_name            = var.application_name
   tags               = merge(var.tags, local.tags)
   environment        = var.environment
   vpc_id             = module.network.vpc_id
