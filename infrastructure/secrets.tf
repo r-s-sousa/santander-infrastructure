@@ -4,7 +4,7 @@ resource "aws_secretsmanager_secret" "ssm" {
 
   lifecycle {
     create_before_destroy = true
-    prevent_destroy       = true
+    prevent_destroy       = false
   }
 
   tags = merge(local.tags, var.tags)
